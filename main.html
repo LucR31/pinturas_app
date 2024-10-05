@@ -2,19 +2,27 @@
 <html>
   <head>
     <script src="https://unpkg.com/konva@9.3.13/konva.min.js"></script>
+    <script src="painting.js"></script>
     <meta charset="utf-8" />
-    <title>Demo</title>
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        background-color: #f0f0f0;
-      }
-    </style>
+    <link href="style.css" rel="stylesheet">
+    <title>Demo v0.1</title>
   </head>
+
   <body>
-    <div id="container"></div>
+    <h1>Demo v0.1</h1>
+
+    <div class="dotted">
+      <div id="container"></div>
+    </div>
+
+    <div id="buttons">
+      <button class="button" id="save">Guardar imagen</button>
+      <button class="button" id="edit">Editar</button>
+      <button class="button" id="play">Play</button>
+    </div>
+    
     <script src="java_thing.js"></script>
+    
+
   </body>
 </html>

@@ -20,13 +20,12 @@ var stage = new Konva.Stage({
 });
 
 var paintings = {};
-var transformers  = {}
-const NUMBER = 4 //number of fotos
+var transformers  = {};
+const NUMBER = 4; //number of fotos
 
 for (var i = 0; i < NUMBER; i++) {
-
-  paintings[i] = new Painting('/Users/lucas/Desktop/haleakala.JPG', './musica/bird.m4a', stage)
-
+  paintings[i] = new Painting('/Users/lucas/Desktop/haleakala.JPG',
+                              './musica/bird.m4a', stage);
   transformers[i] = new Konva.Transformer({
     keepRatio: true,
     enabledAnchors: [
@@ -37,7 +36,6 @@ for (var i = 0; i < NUMBER; i++) {
     ],
   });
 }
-
 
 //Adding layers
 for (var i = 0; i < NUMBER; i++) {
@@ -60,7 +58,7 @@ document.getElementById('edit').addEventListener(
   function () {
     remove_image_play_song();
     for (var i = 0; i < NUMBER; i++) {
-      //paintings[i].image.draggable = true TODO
+      //paintings[i].image.draggable = false;
       transformers[i].nodes([paintings[i].image]);
       layer.add(transformers[i]);
     }
@@ -73,11 +71,9 @@ document.getElementById('play').addEventListener(
   function () {
     remove_transformers();
     for (var i = 0; i < NUMBER; i++) {
-      paintings[i].image.on('mouseout',function(){
-        //console.log(evt.currentTarget);
-        //evt.target.song.play()
-        });
-      //paintings[i].image.on('mouseout',pl.apply(paintings[i]));
+      var song_  = paintings[i].song;
+      paintings[i].image.on('mouseover',function(){song_.play();},false);
+      paintings[i].image.on('mouseout',function(){song_.pause();},false);
     }
   },
   false

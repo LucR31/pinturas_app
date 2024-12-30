@@ -7,12 +7,27 @@ class Painting {
                         image: image_,
                         x: stage.width() * +1/2,
                         y: stage.height() * +1/2,
-                        width: 200, 
-                        height: 137,
                         draggable: true,
                       });
 
      }
+    disable_drag(){
+      this.image.draggable('false');
+    }
+
+    enable_drag(){
+      this.image.draggable('true');
+    }
+
+    enable_sound(){
+      var song_ = this.song;
+      this.image.on('mouseover',function(){song_.play();});
+      this.image.on('mouseout',function(){song_.pause();});
+    }
+    disable_sound(){
+      this.image.off('mouseover');
+      this.image.off('mouseout');
+    }
 }
 
 

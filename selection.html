@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <link href="style.css" rel="stylesheet">
+    <script src="java_thing.js"></script>
     <title>Demo v0.1</title>
   </head>
 
@@ -12,9 +13,32 @@
 
     <div id="buttons">
       <a href="main.html">
-      <button class="button" id="continuar">Continuar</button>
+      <!--<button class="button" id="continuar">Continuar</button>-->
+      <input type="submit" class = 'button' value="Continuar">
       </a>
     </div>
-    
+  
+  <label for="images-upload" class="button">
+    Subir Pinturas
+  </label> 
+  <input type="file" id="images-upload" multiple />
+
+  <label for="music-upload" class="button">
+    Subir Musica
+  </label> 
+  <input type="file" onchange="addRow()" id="music-upload" multiple />
+
+
+  <table id = 'mytable'>
+    <thead>
+      <tr>
+        <th>Pinturas</th>
+        <th>Cancion</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+
   </body>
 </html>

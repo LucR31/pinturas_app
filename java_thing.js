@@ -9,25 +9,48 @@ function downloadURI(uri, name) {
   delete link;
 }
 
+function makeData(){
+  var list_files = document.getElementById('images-upload').files;
+  for (i=0;i<list_files.length;i++){
+    var form = document.getElementById(list_files[i].name);
+    sessionStorage.setItem(list_files[i].name, 
+                         form.options[form.selectedIndex].text);
+  }
+}
+
 function addRow(){
 
   var tbody = document.getElementById('mytable').getElementsByTagName('tbody')[0];
   var list_files = document.getElementById('images-upload').files;
   var music_files = document.getElementById('music-upload').files;
-
+  
   for (i=0; i<list_files.length; i++){
 
     let row = tbody.insertRow();
     let cell_name = row.insertCell(0);
     let cell_music = row.insertCell(1);
+    let cell_music_play = row.insertCell(2);
+    let cell_music_delete = row.insertCell(3);
     cell_name.innerHTML = list_files[i].name;
 
+    //Delete
+    var ita = document.createElement('i');
+    ita.className = "fa fa-trash-o";
+    cell_music_delete.appendChild(ita);
+
+    //Audio 
+    var audio = document.createElement('audio');
+    var source = document.createElement('source');
+    //source.src = ;
+    audio.appendChild(source);
+    cell_music_play.appendChild(audio);
+
+    //Form
     var form = document.createElement('form');
     var select = document.createElement('select');
-    form.action = "/action_page.php";
+    form.id = "superform"+i;
     form.appendChild(select);
-    select.id = 'canciones';
-
+    select.id = list_files[i].name;
     cell_music.appendChild(form);
 
     for (j=0; j < music_files.length; j++){
@@ -36,7 +59,6 @@ function addRow(){
       option.innerText = music_files[j].name;
       select.appendChild(option);
     }
-
   }
 }
 
@@ -51,14 +73,14 @@ var stage = new Konva.Stage({
 });
 
 var paintings = {};
+var keys = Object.keys(sessionStorage);
 var transformers  = {};
-const NUMBER = 8; //number of fotos
-const formPhone = document.forms;
-console.info(formPhone)
+const NUMBER = keys.length; //number of fotos
 
-for (var i = 0; i < NUMBER; i++) {
-  paintings[i] = new Painting('./pinturas/image_'+i+'.jpg',
-                              './musica/music_'+i+'.mov', 
+
+for (var i = 0; i < keys.length; i++) {
+  paintings[i] = new Painting('./pinturas/'+keys[i],
+                              './musica/'+sessionStorage.getItem(keys[i]), 
                               stage);
   transformers[i] = new Konva.Transformer({
     keepRatio: true,

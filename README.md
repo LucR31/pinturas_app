@@ -1,1 +1,1 @@
-# pinturas_app
+# Pinturas app v0.2

@@ -5,8 +5,8 @@ class Painting {
         this.song = new Audio(song_path);
         this.image = new Konva.Image({
                         image: image_,
-                        x: stage.width() * +1/2,
-                        y: stage.height() * +1/2,
+                        x: stage.width()*(1/2),
+                        y: stage.height()*(1/2),
                         draggable: true,
                       });
 

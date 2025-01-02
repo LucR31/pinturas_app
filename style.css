@@ -3,25 +3,31 @@ body {
     padding: 0;
     overflow: hidden;
     background-color: #ffffff;
+    overflow:auto !important;
   }
-.dotted {
-  position: absolute;
-  border-style: solid;
-  left:1%;
-  width: 98%;
-  background-image: url('pinturas/thumbnail_IMG_7701.jpg');
-  background-size: 56%;
-  background-repeat: no-repeat;
 
-  }
+.super-container {
+  display:flex;
+  justify-content: space-evenly;
+  flex-wrap:wrap;
+}
+
+#container {
+  position: absolute;
+  background-image: url('./pinturas/thumbnail_IMG_7701.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: contain;
+  background-position: center;
+}
+
 input[type="file"] {
     display: none;
   }
   
-#buttons {
-    position: absolute;
-    bottom: 5%;
-    left: 5%;
+.buttons {
+  position: absolute;
+  bottom: 1%;
   }
 
 .button {

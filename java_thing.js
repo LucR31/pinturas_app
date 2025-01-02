@@ -1,14 +1,3 @@
-
-function downloadURI(uri, name) {
-  var link = document.createElement('a');
-  link.download = name;
-  link.href = uri;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-  delete link;
-}
-
 function makeData(){
   var list_files = document.getElementById('images-upload').files;
   for (i=0;i<list_files.length;i++){
@@ -16,6 +5,10 @@ function makeData(){
     sessionStorage.setItem(list_files[i].name, 
                          form.options[form.selectedIndex].text);
   }
+}
+
+function clear_session(){
+  sessionStorage.clear();
 }
 
 function addRow(){
@@ -69,14 +62,13 @@ var layer = new Konva.Layer();
 var stage = new Konva.Stage({
   container: 'container',
   width: width*0.98,
-  height: height*0.8,
+  height: height*0.90,
 });
 
 var paintings = {};
 var keys = Object.keys(sessionStorage);
 var transformers  = {};
 const NUMBER = keys.length; //number of fotos
-
 
 for (var i = 0; i < keys.length; i++) {
   paintings[i] = new Painting('./pinturas/'+keys[i],
@@ -100,15 +92,6 @@ for (var i = 0; i < NUMBER; i++) {
 stage.add(layer);
 
 //BUTTONS
-document.getElementById('save').addEventListener(
-  'click',
-  function () {
-    var dataURL = stage.toDataURL();
-    downloadURI(dataURL, 'stage.png');
-  },
-  false
-);
-
 document.getElementById('edit').addEventListener(
   'click',
   function () {

@@ -14,7 +14,7 @@ body {
 
 #container {
   position: absolute;
-  background-image: url('./pinturas/thumbnail_IMG_7701.jpg');
+  background-image: url('./pinturas/fondo.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: contain;
